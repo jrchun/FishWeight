@@ -1,12 +1,55 @@
+**물고기 무게예측 분석**
+========================
+
+본 문서는 '물고기 무게예측 분석'(Fish Weight)을 마크다운형식으로 편집하여,
+Github에 업로드 하기 위하여 작성된 문서입니다.
+데이터 출처 : 확인 필요.
+
+\*<https://www.kaggle.com/c/bike-sharing-demand>
+
+------------------------------------------------------------------------
+
+분석 과정 목차
+--------------
+
+1.  변수 정의
+2.  분석 과정
+    -   데이터 구조 확인
+    -   사전 가설 수립(Make insight)
+    -   EDA / Data preprocessing
+    -   Modeling
+    -   MSE Checking
+3.  결론
+
+------------------------------------------------------------------------
+
+변수 정의
+---------
+
 ``` r
 rm(list = ls())
 ```
 
 ``` r
 setwd('C:\\github\\Project\\FishWeight')
+data <- read.table('fish.txt')
+colnames(data) <- c('Obs', 'Species', 'Weight', 'Length1', 'Length2',
+                  'Length3', 'Height', 'Width', 'Sex')
+str(data)
 ```
 
-data.all &lt;- read.table('fish.txt', header = F) names(data.all) &lt;- c('Obs', 'Species', 'Weight', 'Length1', 'Length2', 'Length3', 'Height', 'Width', 'Sex') data.all*S**p**e**c**i**e**s* &lt; −*a**s*.*f**a**c**t**o**r*(*d**a**t**a*.*a**l**l*Species) \#Species : 종 이므로 팩터로 변경
+    ## 'data.frame':    159 obs. of  9 variables:
+    ##  $ Obs    : int  1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ Species: int  1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ Weight : num  242 290 340 363 430 450 500 390 450 500 ...
+    ##  $ Length1: num  23.2 24 23.9 26.3 26.5 26.8 26.8 27.6 27.6 28.5 ...
+    ##  $ Length2: num  25.4 26.3 26.5 29 29 29.7 29.7 30 30 30.7 ...
+    ##  $ Length3: num  30 31.2 31.1 33.5 34 34.7 34.5 35 35.1 36.2 ...
+    ##  $ Height : num  38.4 40 39.8 38 36.6 39.2 41.1 36.2 39.9 39.3 ...
+    ##  $ Width  : num  13.4 13.8 15.1 13.3 15.1 14.2 15.3 13.4 13.8 13.7 ...
+    ##  $ Sex    : int  NA NA NA NA NA NA NA NA NA NA ...
+
+data.all*S**p**e**c**i**e**s* &lt; −*a**s*.*f**a**c**t**o**r*(*d**a**t**a*.*a**l**l*Species) \#Species : 종 이므로 팩터로 변경
 
 which(is.na(data.all$Weight)==TRUE) \#Weight를 추정하는 분석이므로 Weight가 0, row인 row는 삭제한다. data.all &lt;- data.all\[-14, \] which(data.all$Weight == 0) data.all &lt;- data.all\[-46, \]
 

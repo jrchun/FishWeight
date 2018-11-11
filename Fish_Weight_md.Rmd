@@ -45,10 +45,9 @@ setwd('C:\\github\\Project\\FishWeight')
 data <- read.table('fish.txt')
 colnames(data) <- c('Obs', 'Species', 'Weight', 'Length1', 'Length2',
                   'Length3', 'Height', 'Width', 'Sex')
+data$Species <- as.factor(data$Species)
 str(data)
 ```
-
-data.all$Species <- as.factor(data.all$Species) #Species : 종 이므로 팩터로 변경
 
 which(is.na(data.all$Weight)==TRUE) #Weight를 추정하는 분석이므로 Weight가 0, row인 row는 삭제한다.
 data.all <- data.all[-14, ]

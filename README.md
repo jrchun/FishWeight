@@ -1,1 +1,4 @@
 # FishWeight
+
+본 문서는  '물고기 무게 예측'(Fish Weight Prediction)을 마크다운형식으로 편집하여,
+Github에 업로드 하기 위하여 작성된 문서입니다.

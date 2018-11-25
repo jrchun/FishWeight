@@ -44,6 +44,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 데이터 구조 확인  
 
+**Initialize**  
+
 ```{r}
 rm(list = ls())
 ```
@@ -51,15 +53,21 @@ rm(list = ls())
 ```{r}
 setwd('C:\\github\\Project\\FishWeight')
 data <- read.table('fish.txt')
-colnames(data) <- c('Obs', 'Species', 'Weight', 'Length1', 'Length2',
-                  'Length3', 'Height', 'Width', 'Sex')
-data$Species <- as.factor(data$Species)
 str(data)
 ```
+  
+**Column 탐색**  
 
 ```{r}
-
+colnames(data) <- c('Obs', 'Species', 'Weight', 'Length1', 'Length2',
+                  'Length3', 'Height', 'Width', 'Sex')
+str(data)
+colSums(is.na(data))/nrow(data)
+data$Species <- as.factor(data$Species)
 ```
+
+특정 변수에서 NA값이 존재하는 것을 확인할 수 있다.  
+-> NA값의 처리가 중요한 분석으로 보인다!  
 
 which(is.na(data.all$Weight)==TRUE) #Weight를 추정하는 분석이므로 Weight가 0, row인 row는 삭제한다.
 data.all <- data.all[-14, ]

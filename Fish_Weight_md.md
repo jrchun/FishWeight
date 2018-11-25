@@ -33,6 +33,8 @@ Github에 업로드 하기 위하여 작성된 문서입니다.
 
 ### 데이터 구조 확인
 
+**Initialize**
+
 ``` r
 rm(list = ls())
 ```
@@ -40,15 +42,31 @@ rm(list = ls())
 ``` r
 setwd('C:\\github\\Project\\FishWeight')
 data <- read.table('fish.txt')
+str(data)
+```
+
+    ## 'data.frame':    159 obs. of  9 variables:
+    ##  $ V1: int  1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ V2: int  1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ V3: num  242 290 340 363 430 450 500 390 450 500 ...
+    ##  $ V4: num  23.2 24 23.9 26.3 26.5 26.8 26.8 27.6 27.6 28.5 ...
+    ##  $ V5: num  25.4 26.3 26.5 29 29 29.7 29.7 30 30 30.7 ...
+    ##  $ V6: num  30 31.2 31.1 33.5 34 34.7 34.5 35 35.1 36.2 ...
+    ##  $ V7: num  38.4 40 39.8 38 36.6 39.2 41.1 36.2 39.9 39.3 ...
+    ##  $ V8: num  13.4 13.8 15.1 13.3 15.1 14.2 15.3 13.4 13.8 13.7 ...
+    ##  $ V9: int  NA NA NA NA NA NA NA NA NA NA ...
+
+**Column 탐색**
+
+``` r
 colnames(data) <- c('Obs', 'Species', 'Weight', 'Length1', 'Length2',
                   'Length3', 'Height', 'Width', 'Sex')
-data$Species <- as.factor(data$Species)
 str(data)
 ```
 
     ## 'data.frame':    159 obs. of  9 variables:
     ##  $ Obs    : int  1 2 3 4 5 6 7 8 9 10 ...
-    ##  $ Species: Factor w/ 7 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ Species: int  1 1 1 1 1 1 1 1 1 1 ...
     ##  $ Weight : num  242 290 340 363 430 450 500 390 450 500 ...
     ##  $ Length1: num  23.2 24 23.9 26.3 26.5 26.8 26.8 27.6 27.6 28.5 ...
     ##  $ Length2: num  25.4 26.3 26.5 29 29 29.7 29.7 30 30 30.7 ...
@@ -56,6 +74,22 @@ str(data)
     ##  $ Height : num  38.4 40 39.8 38 36.6 39.2 41.1 36.2 39.9 39.3 ...
     ##  $ Width  : num  13.4 13.8 15.1 13.3 15.1 14.2 15.3 13.4 13.8 13.7 ...
     ##  $ Sex    : int  NA NA NA NA NA NA NA NA NA NA ...
+
+``` r
+colSums(is.na(data))/nrow(data)
+```
+
+    ##         Obs     Species      Weight     Length1     Length2     Length3 
+    ## 0.000000000 0.000000000 0.006289308 0.000000000 0.000000000 0.000000000 
+    ##      Height       Width         Sex 
+    ## 0.000000000 0.000000000 0.547169811
+
+``` r
+data$Species <- as.factor(data$Species)
+```
+
+특정 변수에서 NA값이 존재하는 것을 확인할 수 있다.
+-&gt; NA값의 처리가 중요한 분석으로 보인다!
 
 which(is.na(data.all$Weight)==TRUE) \#Weight를 추정하는 분석이므로 Weight가 0, row인 row는 삭제한다. data.all &lt;- data.all\[-14, \] which(data.all$Weight == 0) data.all &lt;- data.all\[-46, \]
 

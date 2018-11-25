@@ -91,6 +91,8 @@ data$Species <- as.factor(data$Species)
 특정 변수에서 NA값이 존재하는 것을 확인할 수 있다.
 -&gt; NA값의 처리가 중요한 분석으로 보인다!
 
+**변수별 탐색**
+
 which(is.na(data.all$Weight)==TRUE) \#Weight를 추정하는 분석이므로 Weight가 0, row인 row는 삭제한다. data.all &lt;- data.all\[-14, \] which(data.all$Weight == 0) data.all &lt;- data.all\[-46, \]
 
 str(data.all) \# 데이터 : 물고기의 성질 \# 목적 : 물고기의 무게 예측 \# Train data : 1~120 , Test data : 121~159

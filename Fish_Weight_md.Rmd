@@ -36,6 +36,14 @@ Github에 업로드 하기 위하여 작성된 문서입니다.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+  
+---  
+
+## 분석 과정  
+
+### 데이터 구조 확인  
+
 ```{r}
 rm(list = ls())
 ```
@@ -47,6 +55,10 @@ colnames(data) <- c('Obs', 'Species', 'Weight', 'Length1', 'Length2',
                   'Length3', 'Height', 'Width', 'Sex')
 data$Species <- as.factor(data$Species)
 str(data)
+```
+
+```{r}
+
 ```
 
 which(is.na(data.all$Weight)==TRUE) #Weight를 추정하는 분석이므로 Weight가 0, row인 row는 삭제한다.
